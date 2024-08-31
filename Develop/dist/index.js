@@ -13,7 +13,6 @@ function app() {
                 "Add Role",
                 "View All Departments",
                 "Add Department",
-                "Remove Department",
                 "Quit"
             ]
         }]).then(({ action }) => {
@@ -62,6 +61,7 @@ async function viewAllRoles() {
     const sql = "SELECT role.id, role.title, department.name AS department, role.salary FROM role LEFT JOIN department ON role.department_id = department.id";
     const roles = await pool.query(sql);
     console.table(roles.rows);
+    app();
 }
 async function addEmployee() {
     const roles = await pool.query("SELECT id as value, title as name FROM role");
